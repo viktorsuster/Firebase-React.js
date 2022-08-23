@@ -4,16 +4,16 @@ import {ref, onValue} from "firebase/database"
 import Item from "../Item"
 
 const List = () => {
-  const [podnety, setPodnety] = useState([])
+  const [suggestions, setSuggestions] = useState([])
 
   //read from db
       useEffect(() => {
-        onValue(ref(db, 'podnety/'), (snapshot) => {
-          setPodnety([]);
+        onValue(ref(db, 'suggestions/'), (snapshot) => {
+          setSuggestions([]);
           const data = snapshot.val();
           if (data !== null) {
-            Object.values(data).map((podnet) => {
-              setPodnety((prev) => [...prev, podnet]
+            Object.values(data).map((suggestion) => {
+              setSuggestions((prev) => [...prev, suggestion]
               .sort((a, b) => 
                new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()).reverse())
               });
@@ -21,14 +21,14 @@ const List = () => {
       }, [])
   return (
     <>
-    {podnety
-             .map((podnet) => 
-               (<Item src={podnet.url}
-                key={podnet.ID}
-                name={podnet.username}
-                address={podnet.address}
-                popis={podnet.description}
-                date={podnet.date}
+    {suggestions
+             .map((suggestion) => 
+               (<Item src={suggestion.url}
+                key={suggestion.ID}
+                name={suggestion.username}
+                address={suggestion.address}
+                description={suggestion.description}
+                date={suggestion.date}
                 />
       ))
       }

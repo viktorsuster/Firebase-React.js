@@ -15,11 +15,11 @@ const List = (props) => {
     <div className="list-container">
     <div className="container"
          onClick={showMore}>
-          <strong>Meno a priezvisko : {props.name}</strong>
-          <p>Adresa : {props.address}</p>
+          <strong>Name : {props.name}</strong>
+          <p>Addres : {props.address}</p>
           {isClicked
         ? <>
-        <p>Popis: {props.popis}</p>
+        <p>Description: {props.description}</p>
         <p>{props.date}</p>
         </>
         : null

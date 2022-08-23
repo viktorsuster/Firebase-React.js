@@ -5,22 +5,23 @@ import {uid} from "uid"
 import {set} from "firebase/database"
 import UploadImage from "../../services/UploadImage"
 
-const Form = () => {
 
-  // states
+
+const Form = () => {
+    // states
+  const [imagePath, setImagePath] = useState("")
+  const [fileInput, setFileInput] = useState("")
   const [afterUpload, setAfterUpload] = useState(true)
   const [afterComplete, setAfterComplete] = useState(false)
   const [name, setName] = useState("")
   const [adress, setAdress] = useState("")
   const [description, setDescription] = useState("")
-  const [imagePath, setImagePath] = useState("")
-  const [fileInput, setFileInput] = useState("")
 
 
 // write to db
 function writeUserData() {
   const uuid = uid()
-  set(ref(db, 'podnety/' + `/${uuid}`), {
+  set(ref(db, 'suggestions/' + `/${uuid}`), {
     ID: uuid,
     username: name,
     address: adress,
@@ -47,19 +48,31 @@ function writeUserData() {
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value)
   }
+  const setImageUrl = (data) => {
+    setImagePath(data)
+  }
+  const setOffUpload = (e) => {
+    setAfterUpload(e)
+  }
+  const setOnAddButton = (e) => {
+    setAfterComplete(e)
+  }
+  const rstFileInput = (e) => {
+    setFileInput(e)
+  }
 
   return (
     <div className="form-control">
         <input 
        type="text"
-       placeholder="Meno a priezvisko"
+       placeholder="Full name"
        value={name}
        onChange={handleNameChange}
        required
        />
         <input 
        type="text"
-       placeholder="Adresa"
+       placeholder="Address"
        value={adress}
        onChange={handleAdressChange}
        required
@@ -67,13 +80,13 @@ function writeUserData() {
         <textarea 
        type="text"
        className="form-label"
-       placeholder="Popis podnetu"
+       placeholder="Description"
        value={description}
        onChange={handleDescriptionChange}
        rows="3"
        required
        />
-       <UploadImage />
+       <UploadImage resetFileInput={rstFileInput} imageUrl={setImageUrl} offUpload={setOffUpload} onAddButton={setOnAddButton} />
        <div className="d-grid gap-2">
         <button className="btn btn-primary"
                 type="button"
@@ -81,7 +94,7 @@ function writeUserData() {
                 onClick={writeUserData}
                 id="liveToastBtn"
                 >
-                  Pridať podnet
+                  Add suggestion
         </button>
         </div>
         </div>
