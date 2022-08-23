@@ -1,6 +1,15 @@
 import React from 'react'
 
 const Toast = (props) => {
+  // Bootstrap toast
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  toastTrigger.addEventListener('click', () => {
+    const toast = new bootstrap.Toast(toastLiveExample)
+    toast.show()
+  })
+}
   return (
     <div className="toast-container position-fixed bottom-0 end-0 p-3">
   <div id={props.id} className="toast" role="alert" aria-live="assertive" aria-atomic="true">
