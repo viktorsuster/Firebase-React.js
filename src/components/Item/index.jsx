@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import React, {useState} from 'react'
 
 const List = (props) => {
@@ -24,7 +25,7 @@ const List = (props) => {
         </>
         : null
       }
-          <img src={props.src} />
+          <img src={props.src} alt="" />
           </div>
           </div>
   )

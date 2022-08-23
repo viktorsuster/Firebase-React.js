@@ -9,9 +9,9 @@ import UploadImage from "../../services/UploadImage"
 
 const Form = () => {
     // states
+  const [afterUpload, setAfterUpload] = useState(true)
   const [imagePath, setImagePath] = useState("")
   const [fileInput, setFileInput] = useState("")
-  const [afterUpload, setAfterUpload] = useState(true)
   const [afterComplete, setAfterComplete] = useState(false)
   const [name, setName] = useState("")
   const [adress, setAdress] = useState("")
@@ -48,15 +48,6 @@ function writeUserData() {
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value)
   }
-  const setImageUrl = (data) => {
-    setImagePath(data)
-  }
-  const setOffUpload = (e) => {
-    setAfterUpload(e)
-  }
-  const setOnAddButton = (e) => {
-    setAfterComplete(e)
-  }
 
   return (
     <div className="form-control">
@@ -84,9 +75,10 @@ function writeUserData() {
        required
        />
        <UploadImage resetFileInput={fileInput}
-                    imageUrl={setImageUrl}
-                    offUpload={setOffUpload}
-                    onAddButton={setOnAddButton}
+                    imageUrl={setImagePath}
+                    offUpload={setAfterUpload}
+                    afterUpload={afterUpload}
+                    onAddButton={setAfterComplete}
                      />
        <div className="d-grid gap-2">
         <button className="btn btn-primary"
