@@ -1,0 +1,31 @@
+.App {
+  width: 50%;
+  margin: auto;
+}
+
+.list-container {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 5px;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 3px;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 3px;
+}
+
+img {
+  width:100%;
+  height: auto;
+}
