@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
-import {db, storage} from "../../firebase"
-import {uploadBytes, getDownloadURL, ref as sRef} from "firebase/storage"
+import {db} from "../../firebase"
 import {ref} from "firebase/database"
 import {uid} from "uid"
-import {v4} from "uuid"
 import {set} from "firebase/database"
+import UploadImage from "../../services/UploadImage"
 
 const Form = () => {
 
@@ -15,21 +14,8 @@ const Form = () => {
   const [adress, setAdress] = useState("")
   const [description, setDescription] = useState("")
   const [imagePath, setImagePath] = useState("")
-  const [imageUpload, setImageUpload] = useState(null)
   const [fileInput, setFileInput] = useState("")
 
-// upload image to storage
-  const uploadImage = () => {
-    if (imageUpload == null) return
-    const imageRef = sRef(storage, `images/${imageUpload.name + v4()}`)
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImagePath(url)
-        setAfterComplete(true)
-        setAfterUpload(false)
-      })
-    })
-  }
 
 // write to db
 function writeUserData() {
@@ -61,9 +47,7 @@ function writeUserData() {
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value)
   }
-  const handleImageUpload = (e) => {
-    setImageUpload(e.target.files[0])
-    }
+
   return (
     <div className="form-control">
         <input 
@@ -89,21 +73,7 @@ function writeUserData() {
        rows="3"
        required
        />
-       <div className="input-group mb-3">
-            <input type="file"
-                   disabled={!afterUpload}
-                   key={fileInput}
-                   onChange={handleImageUpload}
-                   className="form-control"
-                   id="inputGroupFile02"
-                   />
-            <button className="input-group-text"
-                   disabled={!afterUpload}
-                   onClick={uploadImage}
-                   >
-                    Nahrať
-            </button>
-       </div>
+       <UploadImage />
        <div className="d-grid gap-2">
         <button className="btn btn-primary"
                 type="button"
