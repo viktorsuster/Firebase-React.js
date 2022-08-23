@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Form />
       <List />
-      <Toast id={"liveToast"} />
+      <Toast id={"liveToastBtn"} main={"Výborne!"} second={"Podnet bol pridaný."}/>
     </div>
   );
 }

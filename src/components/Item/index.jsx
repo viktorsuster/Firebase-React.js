@@ -15,12 +15,12 @@ const List = (props) => {
     <div className="list-container">
     <div className="container"
          onClick={showMore}>
-          <strong>Name : {props.name}</strong>
-          <p>Addres : {props.address}</p>
+          <p><strong>Name : {props.name}</strong></p>
+          <p><strong>Addres : {props.address}</strong></p>
           {isClicked
         ? <>
         <p>Description: {props.description}</p>
-        <p>{props.date}</p>
+        <p className='dateText'>{props.date}</p>
         </>
         : null
       }

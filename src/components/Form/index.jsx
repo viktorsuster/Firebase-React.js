@@ -57,9 +57,6 @@ function writeUserData() {
   const setOnAddButton = (e) => {
     setAfterComplete(e)
   }
-  const rstFileInput = (e) => {
-    setFileInput(e)
-  }
 
   return (
     <div className="form-control">
@@ -86,7 +83,11 @@ function writeUserData() {
        rows="3"
        required
        />
-       <UploadImage resetFileInput={rstFileInput} imageUrl={setImageUrl} offUpload={setOffUpload} onAddButton={setOnAddButton} />
+       <UploadImage resetFileInput={fileInput}
+                    imageUrl={setImageUrl}
+                    offUpload={setOffUpload}
+                    onAddButton={setOnAddButton}
+                     />
        <div className="d-grid gap-2">
         <button className="btn btn-primary"
                 type="button"
