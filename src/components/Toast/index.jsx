@@ -4,7 +4,7 @@ import React from 'react'
 const Toast = (props) => {
   // Bootstrap toast
 const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')
+const toastLiveExample = document.getElementById(props.id)
 if (toastTrigger) {
   toastTrigger.addEventListener('click', () => {
     const toast = new bootstrap.Toast(toastLiveExample)

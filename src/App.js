@@ -1,6 +1,5 @@
 import './App.css';
-import List from './components/List';
-import Toast from "./components/Toast"
+import List from './components/List'
 import Form from "./components/Form"
 
 function App() {
@@ -8,7 +7,6 @@ function App() {
     <div className="App">
       <Form />
       <List />
-      <Toast id={"liveToastBtn"} main={"Výborne!"} second={"Podnet bol pridaný."}/>
     </div>
   );
 }

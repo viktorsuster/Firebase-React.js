@@ -1,9 +1,11 @@
+/* eslint-disable no-useless-concat */
 import React, {useState} from 'react'
 import {db} from "../../firebase"
 import {ref} from "firebase/database"
 import {uid} from "uid"
 import {set} from "firebase/database"
 import UploadImage from "../../services/UploadImage"
+import Toast from "../Toast"
 
 
 
@@ -90,6 +92,7 @@ function writeUserData() {
                   Add suggestion
         </button>
         </div>
+        <Toast id="liveToast" main={"Výborne!"} second={"Podnet bol pridaný."}/>
         </div>
   )
 }
