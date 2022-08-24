@@ -34,3 +34,7 @@ img {
   font-size: small;
   color: rgb(196, 196, 196);
 }
+
+.inputError {
+  color:red;
+}

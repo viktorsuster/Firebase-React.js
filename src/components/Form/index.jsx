@@ -18,10 +18,15 @@ const Form = () => {
   const [name, setName] = useState("")
   const [adress, setAdress] = useState("")
   const [description, setDescription] = useState("")
+  const [inputAlert, setInputAlert] = useState(false)
 
 
 // write to db
 function writeUserData() {
+  if (!name || !adress || !description) {
+    setInputAlert(true)
+    return
+  }
   const uuid = uid()
   set(ref(db, 'suggestions/' + `/${uuid}`), {
     ID: uuid,
@@ -38,6 +43,7 @@ function writeUserData() {
   setAfterComplete(false)
   setAfterUpload(true)
   setFileInput(uid)
+  setInputAlert(false)
 }
 
   // handlers
@@ -87,12 +93,15 @@ function writeUserData() {
                 type="button"
                 disabled={!afterComplete} 
                 onClick={writeUserData}
-                id="liveToastBtn"
+                // id="liveToastBtn"
                 >
                   Add suggestion
         </button>
+        {inputAlert ?
+        <p className='inputError'>All fields are required!</p>
+      : null}
         </div>
-        <Toast id="liveToast" main={"Výborne!"} second={"Podnet bol pridaný."}/>
+        <Toast main={"Výborne!"} second={"Podnet bol pridaný."}/>
         </div>
   )
 }
