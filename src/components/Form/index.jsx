@@ -18,6 +18,7 @@ const Form = () => {
   const [name, setName] = useState("")
   const [adress, setAdress] = useState("")
   const [description, setDescription] = useState("")
+  const [showToast, setShowToast] = useState(false)
   const [inputAlert, setInputAlert] = useState(false)
 
 
@@ -44,6 +45,7 @@ function writeUserData() {
   setAfterUpload(true)
   setFileInput(uid)
   setInputAlert(false)
+  setShowToast(true)
 }
 
   // handlers
@@ -93,7 +95,6 @@ function writeUserData() {
                 type="button"
                 disabled={!afterComplete} 
                 onClick={writeUserData}
-                // id="liveToastBtn"
                 >
                   Add suggestion
         </button>
@@ -101,7 +102,8 @@ function writeUserData() {
         <p className='inputError'>All fields are required!</p>
       : null}
         </div>
-        <Toast main={"Výborne!"} second={"Podnet bol pridaný."}/>
+        <Toast ready={showToast} main={"Výborne!"} second={"Podnet bol pridaný."}/>
+        
         </div>
   )
 }
